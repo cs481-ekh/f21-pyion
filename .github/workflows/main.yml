@@ -19,5 +19,6 @@ jobs:
       - name: Install dependencies
         run: |
           python -m pip install --upgrade pip
+          pip install -r requirements.txt
       - name: Test with pytest
-        run: pytest -vv
+        run: python -m unittest src.unit_tests.main_unit_tests
