@@ -21,5 +21,4 @@ jobs:
           python -m pip install --upgrade pip
           pip install -r requirements.txt
       - name: Test with pytest
-        run: test.sh 
-        run: python -m unittest src.unit_tests.main_unit_tests
+        run: test.sh
