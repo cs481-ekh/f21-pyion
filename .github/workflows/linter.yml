@@ -22,4 +22,4 @@ jobs:
           pip install pylint --upgrade
       - name: Lint with pylint
         run: 
-          pylint main.py
+          pylint src/pyion/main.py
