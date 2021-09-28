@@ -1,2 +1,2 @@
-echo test
+#!/bin/bash
 exit 0
