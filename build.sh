@@ -1,2 +1,3 @@
 #!/bin/bash
-exit 127
+#Since we are using Python, there is no project build.
+exit 0
