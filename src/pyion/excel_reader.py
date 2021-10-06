@@ -44,6 +44,3 @@ def read_file(file_loc: str) -> PyionData:
     data.temp = sheet["f2"].value
 
     return data
-
-if __name__ == "__main__":
-    read_file("../data/KCl-2-26-21-yellow.xlsx")
