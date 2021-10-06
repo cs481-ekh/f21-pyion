@@ -14,7 +14,6 @@ def step_one():
     print("-> Running Step 1")
     print("    -> Reading Excel File")
     excel_data = read_file(sys.argv[1])
-    print(excel_data)
 
 
 def step_two():
