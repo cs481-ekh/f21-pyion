@@ -1,18 +1,18 @@
 from src.pyion import excel_reader
-from tabulate import tabulate
 from excel_reader import *
 
-input = excel_reader.voltage
+
+#input = excel_reader.voltage
 
 
-def calculateAverage():
+def calculateAverage(input):
 
     sublists = [input[n:n+3] for n in range(0, len(input), 3)]  # sublists contains sublists of length 3, subList is in the format of [[a,b,c],[c,d,e]...]
     total = 0   #this is the total/sum of a block of three
     average = 0 #this is the average of a block of three
     averagelist = [] #this is the list that holds all the calculated average
 
-    head = ["Average Voltage"] #this is the header for the table that stores average value
+    #head = ["Average Voltage"] #this is the header for the table that stores average value
 
     for item in sublists: # every item is a sublist in the format of [x,y,z]
         for i in item:  #every i is a number in sublist, like x in [x,y,z]
@@ -21,4 +21,5 @@ def calculateAverage():
         averagelist.append(average)#store the average of a sublist in a table
 
     #now make a table from filled-up averagelist and return it
-    return tabulate(averagelist,headers=head, tablefmt="grid")
+    #return tabulate(averagelist,headers=head, tablefmt="grid")
+    return averagelist
