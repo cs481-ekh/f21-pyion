@@ -1,4 +1,8 @@
+import sys
+from excel_reader import *
+
 def runner():
+    validate_cmd_line()
     step_one()
     step_two()
     step_three()
@@ -8,7 +12,8 @@ def runner():
 
 def step_one():
     print("-> Running Step 1")
-    pass
+    print("    -> Reading Excel File")
+    excel_data = read_file(sys.argv[1])
 
 
 def step_two():
@@ -30,8 +35,10 @@ def validate_input():
     pass
 
 
-def validate_cmd_line():
-    pass
+def validate_cmd_line() -> None:
+    if len(sys.argv) > 2:
+        print("Too many command line arguments given \n main.py [excel file location]")
+        exit(1)
 
 
 if __name__ == "__main__":
