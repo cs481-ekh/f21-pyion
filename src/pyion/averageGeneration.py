@@ -1,5 +1,3 @@
-from src.pyion import excel_reader
-from excel_reader import *
 
 
 #input = excel_reader.voltage
