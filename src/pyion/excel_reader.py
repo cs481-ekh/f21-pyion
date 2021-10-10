@@ -13,6 +13,9 @@ class PyionData:
 
 # Returns all voltages from column A
 def get_voltages(sheet, cell_int: int) -> list[float]:
+    if sheet is None or cell_int is None:
+        raise Exception("Sheet and cell_int cannot be null for get_voltages")
+
     cell = f"a{str(cell_int)}"
     if sheet[cell].value is None:
         values = [x[0].value for x in sheet["a2":f"a{str(cell_int-1)}"]]
@@ -22,6 +25,9 @@ def get_voltages(sheet, cell_int: int) -> list[float]:
 
 # Returns all v_add from column E
 def get_v_add(sheet, cell_int: int) -> list[float]:
+    if sheet is None or cell_int is None:
+        raise Exception("Sheet and cell_int cannot be null for get_v_add")
+
     cell = f"e{str(cell_int)}"
     if sheet[cell].value is None:
         values = [x[0].value for x in sheet["e2":f"e{str(cell_int-1)}"]]
