@@ -1,5 +1,6 @@
 import sys
 from excel_reader import *
+from voltage_stdev import *
 
 def runner():
     validate_cmd_line()
@@ -14,6 +15,7 @@ def step_one():
     print("-> Running Step 1")
     print("    -> Reading Excel File")
     excel_data = read_file(sys.argv[1])
+    v_stdev = voltage_stdev(excel_data.voltage)
 
 
 def step_two():
