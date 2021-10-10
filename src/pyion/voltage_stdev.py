@@ -1,4 +1,4 @@
-import stdev from statistics
+from statistics import stdev
 
 #returns a list of standard deviations
 #each standard deviation is calculated from 3 consecutive voltages in the voltage list
