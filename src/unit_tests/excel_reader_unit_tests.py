@@ -37,8 +37,11 @@ class ExcelReaderTestCase(unittest.TestCase):
         sheet_mock = Mock()
         headers = list(sheet_mock.rows)[0]
 
+        # if len(headers) != 6:
+        #     self.assertRaises(Exception)
+
         if len(headers) != 6:
-            self.assertRaises(Exception)
+            self.assertRaises(Exception, er.check_headers)
 
         # with self.assertRaises(Exception):
         #         headers = list(sheet_mock.rows)[0]
