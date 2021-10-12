@@ -32,20 +32,6 @@ class ExcelReaderTestCase(unittest.TestCase):
         with self.assertRaises(Exception):
              er.check_headers(None)
 
-    # Test check_headers fails on headers with length not equal to 6:
-    def test_check_headers_throws_error_given_wrong_length_header(self):
-        sheet_mock = Mock()
-        headers = list(sheet_mock.rows)[0]
-
-        # if len(headers) != 6:
-        #     self.assertRaises(Exception)
-
-        if len(headers) != 6:
-            self.assertRaises(Exception, er.check_headers)
-
-        # with self.assertRaises(Exception):
-        #         headers = list(sheet_mock.rows)[0]
-        #         len(headers) != 6
 
 
 
