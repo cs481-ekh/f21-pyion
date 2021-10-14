@@ -25,3 +25,13 @@ class ExcelReaderTestCase(unittest.TestCase):
     def test_read_file_throws_error_given_null_file(self):
         with self.assertRaises(Exception):
             er.read_file("abc")
+
+
+    # Test check_headers on if sheet is none:
+    def test_check_headers_throws_error_given_null_sheet(self):
+        with self.assertRaises(Exception):
+             er.check_headers(None)
+
+
+
+
