@@ -1,6 +1,6 @@
 import sys
-from excel_reader import *
-from voltage_stdev import *
+from src.pyion.excel_reader import *
+from src.pyion.voltage_stdev import *
 
 def runner():
     validate_cmd_line()
