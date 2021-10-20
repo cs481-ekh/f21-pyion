@@ -1,6 +1,7 @@
 import sys
 from excel_reader import *
 from voltage_stdev import *
+from src.pyion.averageGeneration import *
 from cr import *
 
 def runner():
@@ -16,8 +17,9 @@ def step_one():
     print("-> Running Step 1")
     print("    -> Reading Excel File")
     excel_data = read_file(sys.argv[1])
-    v_stdev = voltage_stdev(excel_data.voltage)
-    c_ratios = get_ratios(excel_data.ci,excel_data.vi,excel_data.cs,excel_data.v_add)
+    excel_data.v_stdev.value = voltage_stdev(excel_data.voltage.value)
+    excel_data.v_avg.value = calculateAverage(excel_data.voltage.value)
+    c_ratios = get_ratios(excel_data.ci.value, excel_data.vi.value, excel_data.cs.value, excel_data.v_add.value)
 
 def step_two():
     print("-> Running Step 2")
