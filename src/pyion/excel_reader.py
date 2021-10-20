@@ -27,16 +27,11 @@ class PyionData:
         self.v_avg = PyionUnit("Voltage Avg", "mV", [])
 
     def print_table(self):
-        data_fmt = {
-            f"{self.voltage.name}": self.voltage.value,
-            f"{self.ci.name}": [self.ci.value],
-            f"{self.vi.name}": [self.vi.value],
-            f"{self.cs.name}": [self.cs.value],
-            f"{self.v_add.name}": self.v_add.value,
-            f"{self.temp.name}": [self.temp.value],
-            f"{self.v_avg.name}": self.v_avg.value,
-            f"{self.v_stdev.name}": self.v_stdev.value,
-        }
+        data_fmt = {}
+        for k in self.__dict__.keys():
+            v = self.__dict__[k]
+            if type(v) is PyionUnit:
+                data_fmt[f"{v.name}({v.unit})"] = v.value if type(v.value) is list else [v.value]
         return tabulate(data_fmt, headers="keys")
 
 
