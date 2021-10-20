@@ -1,6 +1,4 @@
 def get_ratios(c1,c_init,vol_init,c_add,vol_add_list):
-    if len(c_add_list) != len(vol_add_list):
-        return None
     ratio_list = []
     for v in vol_add_list:
         ratio_list.append(get_cr(c1,get_c_new(c_init,vol_init,c_add,v)))
@@ -14,4 +12,4 @@ def get_c_new(c_init,vol_init,c_add,vol_add):
     return float(new_moles)/new_vol
 
 def get_cr(c1,c2):
-    return float(c1)/c2
+    return float(c2)/c1
