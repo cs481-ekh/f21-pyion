@@ -1,15 +1,38 @@
 import openpyxl as op
+from tabulate import tabulate
 from os.path import exists
 
 
+class PyionUnit:
+    def __init__(self, name, unit, value):
+        self.name = name
+        self.unit = unit
+        self.value = value
+
+    def __str__(self):
+        return f"{self.name}({self.unit}): {self.value}"
+
+    def c_to_k(self, temp):
+        return temp + 273.15
+
 class PyionData:
     def __init__(self):
-        self.voltage = None
-        self.ci = None
-        self.vi = None
-        self.cs = None
-        self.v_add = None
-        self.temp = None
+        self.voltage = PyionUnit("Voltage", "mV", [])
+        self.ci = PyionUnit("Ci", "mM", [])
+        self.vi = PyionUnit("Vi", "uL", [])
+        self.cs = PyionUnit("Cs", "mM", [])
+        self.v_add = PyionUnit("Volume Added", "uL", [])
+        self.temp = PyionUnit("Temperature", "C", [])
+        self.v_stdev = PyionUnit("Voltage SD", "mV", [])
+        self.v_avg = PyionUnit("Voltage Avg", "mV", [])
+
+    def print_table(self):
+        data_fmt = {}
+        for k in self.__dict__.keys():
+            v = self.__dict__[k]
+            if type(v) is PyionUnit:
+                data_fmt[f"{v.name}({v.unit})"] = v.value if type(v.value) is list else [v.value]
+        return tabulate(data_fmt, headers="keys")
 
 
 def check_headers(sheet) -> None:
@@ -42,7 +65,7 @@ def check_headers(sheet) -> None:
 # Returns all of a column recursively after row 1
 def get_column(sheet, col:  str, cell_int: int) -> list[float]:
     if sheet is None or cell_int is None or col is None:
-        raise Exception("Null paramter given in get_column method")
+        raise Exception("Null parameter given in get_column method")
 
     cell = f"{col}{str(cell_int)}"
     if sheet[cell].value is None:
@@ -67,34 +90,34 @@ def read_file(file_loc: str) -> PyionData:
 
     check_headers(sheet)
     # Reading all the excel data
-    data.voltage = get_column(sheet, 'a', 2)
-    if len(data.voltage) % 3 != 0:
+    data.voltage.value = get_column(sheet, 'a', 2)
+    if len(data.voltage.value) % 3 != 0:
         raise Exception("Voltage column should be in multiples of 3, current column is not.")
-    for value in data.voltage:
+    for value in data.voltage.value:
         if type(value) is not float:
             raise Exception("Non-float value found in voltage column")
 
-    data.ci = sheet["b2"].value
-    if type(data.ci) != int and type(data.ci) != float:
+    data.ci.value = sheet["b2"].value
+    if type(data.ci.value) != int and type(data.ci.value) != float:
         raise Exception("Ci value must be an int or float")
 
-    data.vi = sheet["c2"].value
-    if type(data.vi) != int and type(data.vi) != float:
+    data.vi.value = sheet["c2"].value
+    if type(data.vi.value) != int and type(data.vi.value) != float:
         raise Exception("Vi value must be an int or float")
 
-    data.cs = sheet["d2"].value
-    if type(data.cs) != int and type(data.cs) != float:
+    data.cs.value = sheet["d2"].value
+    if type(data.cs.value) != int and type(data.cs.value) != float:
         raise Exception("Cs value must be an int or float")
 
-    data.v_add = get_column(sheet, 'e', 2)
-    if len(data.voltage)/3 != len(data.v_add):
+    data.v_add.value = get_column(sheet, 'e', 2)
+    if len(data.voltage.value)/3 != len(data.v_add.value):
         raise Exception("V_add column length should equal voltage column divided by 3, currently does not.")
-    for value in data.v_add:
+    for value in data.v_add.value:
         if type(value) is not float and type(value) is not int:
             raise Exception("Non-float / Non-int value found in voltage column")
 
-    data.temp = sheet["f2"].value
-    if type(data.temp) != int and type(data.temp) != float:
+    data.temp.value = sheet["f2"].value
+    if type(data.temp.value) != int and type(data.temp.value) != float:
         raise Exception("Temp value must be an int or float")
 
     return data
