@@ -1,39 +1,6 @@
 import openpyxl as op
-from tabulate import tabulate
 from os.path import exists
-
-
-class PyionUnit:
-    def __init__(self, name, unit, value):
-        self.name = name
-        self.unit = unit
-        self.value = value
-
-    def __str__(self):
-        return f"{self.name}({self.unit}): {self.value}"
-
-    def c_to_k(self, temp):
-        return temp + 273.15
-
-class PyionData:
-    def __init__(self):
-        self.voltage = PyionUnit("Voltage", "mV", [])
-        self.ci = PyionUnit("Ci", "mM", [])
-        self.vi = PyionUnit("Vi", "uL", [])
-        self.cs = PyionUnit("Cs", "mM", [])
-        self.v_add = PyionUnit("Volume Added", "uL", [])
-        self.temp = PyionUnit("Temperature", "C", [])
-        self.v_stdev = PyionUnit("Voltage SD", "mV", [])
-        self.v_avg = PyionUnit("Voltage Avg", "mV", [])
-
-    def print_table(self):
-        data_fmt = {}
-        for k in self.__dict__.keys():
-            v = self.__dict__[k]
-            if type(v) is PyionUnit:
-                data_fmt[f"{v.name}({v.unit})"] = v.value if type(v.value) is list else [v.value]
-        return tabulate(data_fmt, headers="keys")
-
+from src.pyion.objects.PyionData import PyionData
 
 def check_headers(sheet) -> None:
     if sheet is None:
