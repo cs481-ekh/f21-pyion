@@ -2,66 +2,39 @@ import openpyxl as op
 
 from excel_reader import PyionData
 
-def write_file(table,outfile,export_format="excel"):
+def write_file(table,outfile_name,export_format="excel"):
     if not isinstance(table,PyionData):
         Exception("Table is not a PyionData object")
     
     if export_format.lower() == "excel":
-        write_excel(table,outfile)
+        write_excel(table,outfile_name)
     else:
         Exception("Output file type not supported")
 
-def write_excel(table,outfile):
+def write_excel(table,outfile_name):
     if not isinstance(table,PyionData):
         Exception("Table is not a PyionData object")
 
-    headers = get_headers(table)
-    
     xl_wb = op.Workbook()
     sheet = xl_wb["Sheet"]
-
-    for col,header in enumerate(headers):
-        sheet.cell(row=1,column=col+1,value=headers[col])
+    headers = get_headers(table)
+    sheet.append(headers)
 
     curr_col = 1
     row_off = 2
-    v_list = table.voltage.value
-    for r,v in enumerate(v_list):
-        sheet.cell(row=r+row_off,column=curr_col,value=v)
-    curr_col += 1
+    for key in table.__dict__.keys():
+        value = table.__dict__[key].value
+        if isinstance(value,list):
+            write_col(sheet,value,curr_col)
+        else:
+            write_col(sheet,[value],curr_col)
+        curr_col += 1
 
-    sheet.cell(row=row_off,column=curr_col,value=table.ci.value)
-    curr_col += 1
-    sheet.cell(row=row_off,column=curr_col,value=table.vi.value)
-    curr_col += 1
+    xl_wb.save(filename=outfile_name + ".xlsx")
 
-    sheet.cell(row=row_off,column=curr_col,value=table.cs.value)
-    curr_col += 1
-
-    v_add_list = table.v_add.value
-    for r,v in enumerate(v_add_list):
-        sheet.cell(row=r+row_off,column=curr_col,value=v)
-    curr_col += 1
-
-    sheet.cell(row=row_off,column=curr_col,value=table.temp.value)
-    curr_col += 1
-
-    stdev_list = table.v_stdev.value
-    for r,s in enumerate(stdev_list):
-        sheet.cell(row=r+row_off,column=curr_col,value=s)
-    curr_col += 1
-
-    v_avg_list = table.v_avg.value
-    for r,v in enumerate(v_add_list):
-        sheet.cell(row=r+row_off,column=curr_col,value=v)
-    curr_col += 1
-
-    c_ratios_list = table.c_ratios.value
-    for r,c in enumerate(c_ratios_list):
-        sheet.cell(row=r+row_off,column=curr_col,value=c)
-    curr_col += 1
-
-    xl_wb.save(filename=outfile + ".xlsx")
+def write_col(work_sheet,data_list,column_num,row_offset=2):
+    for row,value in enumerate(data_list):
+        work_sheet.cell(row=row+row_offset,column=column_num,value=value)
 
 def get_headers(table):
     if not isinstance(table,PyionData):
