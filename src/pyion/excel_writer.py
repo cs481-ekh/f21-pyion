@@ -6,8 +6,11 @@ def write_file(table,outfile_name,export_format="excel"):
     if not isinstance(table,PyionData):
         Exception("Table is not a PyionData object")
     
-    if export_format.lower() == "excel":
-        write_excel(table,outfile_name)
+    if export_format.lower() == "excel" or export_format.lower() == "xlsx":
+        if ".xlsx" in outfile_name:
+            write_excel(table,outfile_name)
+        else:
+            write_excel(table,outfile_name=outfile_name+".xlsx")
     else:
         Exception("Output file type not supported")
 
@@ -30,7 +33,7 @@ def write_excel(table,outfile_name):
             write_col(sheet,[value],curr_col)
         curr_col += 1
 
-    xl_wb.save(filename=outfile_name + ".xlsx")
+    xl_wb.save(filename=outfile_name)
 
 def write_col(work_sheet,data_list,column_num,row_offset=2):
     for row,value in enumerate(data_list):
