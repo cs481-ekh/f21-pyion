@@ -16,13 +16,15 @@ def runner():
 def step_one():
     print("-> Running Step 1")
     print("    -> Reading Excel File")
-    excel_data = read_file(sys.argv[1])
+    pyion_data = read_file(sys.argv[1])
     print("    -> Calculating Voltage Average")
-    excel_data.v_stdev.value = voltage_stdev(excel_data.voltage.value)
+    pyion_data.add_entry("v_stdev", "Voltage SD", "mV", voltage_stdev(pyion_data.voltage.value))
     print("    -> Calculating Voltage Standard Deviation")
-    excel_data.v_avg.value = calculateAverage(excel_data.voltage.value)
+    pyion_data.add_entry("v_avg", "Voltage Average", "mV", calculateAverage(pyion_data.voltage.value))
     print("    -> Calculating Concentration Ratios")
-    c_ratios = get_ratios(excel_data.ci.value, excel_data.vi.value, excel_data.cs.value, excel_data.v_add.value)
+    pyion_data.add_entry("c_ratios", "Concentration Ratios", "None",
+                         get_ratios(pyion_data.ci.value, pyion_data.vi.value,
+                                    pyion_data.cs.value, pyion_data.v_add.value))
 
 def step_two():
     print("-> Running Step 2")
