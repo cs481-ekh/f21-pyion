@@ -40,13 +40,8 @@ def get_headers(table):
     if not isinstance(table,PyionData):
         Exception("Table is not a PyionData object")
     headers = []
-    headers.append(table.voltage.name + "(" + table.voltage.unit + ")")
-    headers.append(table.ci.name + "(" + table.ci.unit + ")")
-    headers.append(table.vi.name + "(" + table.vi.unit + ")")
-    headers.append(table.cs.name + "(" + table.cs.unit + ")")
-    headers.append(table.v_add.name + "(" + table.v_add.unit + ")")
-    headers.append(table.temp.name + "(" + table.temp.unit + ")")
-    headers.append(table.v_stdev.name + "(" + table.v_stdev.unit + ")")
-    headers.append(table.v_avg.name + "(" + table.v_avg.unit + ")")
-    headers.append(table.c_ratios.name + "(" + table.c_ratios.unit + ")")
+    for key in table.__dict__.keys():
+        name = table.__dict__[key].name
+        unit = table.__dict__[key].unit
+        headers.append(name + "(" + unit + ")")
     return headers
