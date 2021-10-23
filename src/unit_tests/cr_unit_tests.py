@@ -12,3 +12,29 @@ class StdevTestCase(unittest.TestCase):
     def test_cr_get_ratios_returns_list(self):
         ratios_list = get_ratios(self.ex_c_init,self.ex_vol_init,self.ex_c_add,self.ex_vol_add_list)
         self.assertTrue(isinstance(ratios_list,list))
+
+    def test_cr_get_ratios_neg_c_init(self):
+        with self.assertRaises(Exception):
+            get_ratios(-1*self.ex_c_init,self.ex_vol_init,self.ex_c_add,self.ex_vol_add_list)
+
+    def test_cr_get_ratios_neg_vol_init(self):
+        with self.assertRaises(Exception):
+            get_ratios(self.ex_c_init,-1*self.ex_vol_init,self.ex_c_add,self.ex_vol_add_list)
+
+    def test_cr_get_ratios_neg_c_add(self):
+        with self.assertRaises(Exception):
+            get_ratios(self.ex_c_init,self.ex_vol_init,-1*self.ex_c_add,self.ex_vol_add_list)
+
+    def test_cr_get_ratios_neg_vol_add_list(self):
+        with self.assertRaises(Exception):
+            neg_vol_add_list = [10.0,20.0,-20.0,-30.0,15.0]
+            get_ratios(self.ex_c_init,self.ex_vol_init,self.ex_c_add,neg_vol_add_list)
+
+    def test_cr_get_ratios_without_vol_add_list(self):
+        with self.assertRaises(Exception):
+            get_ratios(self.ex_c_init,self.ex_vol_init,self.ex_c_add)
+
+    def test_cr_get_ratios_empty_vol_add_list(self):
+        with self.assertRaises(Exception):
+            empty_list = []
+            get_ratios(self.ex_c_init,self.ex_vol_init,self.ex_c_add,empty_list)
