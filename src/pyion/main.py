@@ -44,9 +44,27 @@ def validate_input():
 
 
 def validate_cmd_line() -> None:
-    if len(sys.argv) > 2:
-        print("Too many command line arguments given \n main.py [excel file location]")
+
+    flagIndicator = 0; #if both -c and -f are set, this will be set to 1
+
+    if len(sys.argv) > 4:
+        print("Too many command line arguments given, the correct format is the following: \n main.py [-f] [-c] [filename]")
         exit(1)
+
+    if sys.argv[0] != "main.py":
+        print("The python file name should be main.py\n")
+        exit(1)
+
+    if sys.argv[1] == "-c":
+        print("-c is entered, the table will be printed to the console\n")
+
+    if sys.argv[2] == "-f":
+        print("-f is entered, the output will be written to a file, and the filename should be provided")
+
+    if sys.argv[1] == "-c" and sys.argv[2] == "-f":
+        print("Both -c and -f are entered, set the flag indicator to 1\n")
+        flagIndicator = 1
+
 
 
 if __name__ == "__main__":
