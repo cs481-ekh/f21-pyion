@@ -57,6 +57,7 @@ def validate_cmd_line() -> None:
 
     if sys.argv[1] == "-c":
         print("-c is entered, the table will be printed to the console\n")
+        PyionData.print_table();
 
     if sys.argv[2] == "-f":
         print("-f is entered, the output will be written to a file, and the filename should be provided")
