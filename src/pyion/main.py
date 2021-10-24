@@ -3,6 +3,7 @@ from excel_reader import *
 from voltage_stdev import *
 from src.pyion.averageGeneration import *
 from cr import *
+from excel_writer import *
 
 def runner():
     validate_cmd_line()
@@ -59,10 +60,12 @@ def validate_cmd_line() -> None:
 
     if sys.argv[1] == "-c":
         print("-c is entered, the table will be printed to the console\n")
-        PyionData.print_table();
+        read_file()
+
 
     if sys.argv[2] == "-f":
         print("-f is entered, the output will be written to a file, and the filename should be provided")
+        write_file()
 
     if sys.argv[1] == "-c" and sys.argv[2] == "-f":
         print("Both -c and -f are entered, set the flag indicator to 1\n")
