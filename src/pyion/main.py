@@ -5,6 +5,11 @@ from src.pyion.averageGeneration import *
 from cr import *
 from excel_writer import *
 
+# global variable
+printIndicator = 0;  # if -c is set, this will be set to 1
+writeIndicator = 0;  # if -f is set, this will be set to 1
+
+
 def runner():
     validate_cmd_line()
     step_one()
@@ -27,6 +32,13 @@ def step_one():
                          get_ratios(pyion_data.ci.value, pyion_data.vi.value,
                                     pyion_data.cs.value, pyion_data.v_add.value))
 
+    if printIndicator == 1:
+        print(pyion_data.create_table())
+    if writeIndicator == 1:
+        write_file(pyion_data, "outputfile")
+        print("  -> Wrote to execel file")
+
+
 def step_two():
     print("-> Running Step 2")
     pass
@@ -47,30 +59,20 @@ def validate_input():
 
 
 def validate_cmd_line() -> None:
-
-    flagIndicator = 0; #if both -c and -f are set, this will be set to 1
-
-    if len(sys.argv) > 4:
-        print("Too many command line arguments given, the correct format is the following: \n main.py [-f] [-c] [filename]")
+    if len(sys.argv) > 3:
+        print(
+            "Too many command line arguments given, the correct format is the following: \n [filename] [-f] [-c]")  # the arg0 is the entire directory
         exit(1)
 
-    if sys.argv[0] != "main.py":
-        print("The python file name should be main.py\n")
-        exit(1)
+    # for loop through the list to check if -c or -f are set, and change the indicators to 1
+    for item in sys.argv:
+        if item == "-c":
+            print("-c is entered, the table will be printed to the console\n")
+            printIndicator = 1
 
-    if sys.argv[1] == "-c":
-        print("-c is entered, the table will be printed to the console\n")
-        read_file()
-
-
-    if sys.argv[2] == "-f":
-        print("-f is entered, the output will be written to a file, and the filename should be provided")
-        write_file()
-
-    if sys.argv[1] == "-c" and sys.argv[2] == "-f":
-        print("Both -c and -f are entered, set the flag indicator to 1\n")
-        flagIndicator = 1
-
+        if item == "-f":
+            print("-f is entered, the output will be written to a file, and the filename should be provided\n")
+            writeIndicator = 1
 
 
 if __name__ == "__main__":
