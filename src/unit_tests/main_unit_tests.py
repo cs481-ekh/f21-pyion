@@ -14,13 +14,13 @@ class MainTestCase(unittest.TestCase):
         self.assertIsNone(main.validate_cmd_line())
 
 
-    def test_create_table_is_not_none(self):
-
-        pyion_data = read_file(sys.argv[1])
-        pyion_data.add_entry("v_stdev", "Voltage SD", "mV", voltage_stdev(pyion_data.voltage.value))
-        pyion_data.add_entry("v_avg", "Voltage Average", "mV", calculateAverage(pyion_data.voltage.value))
-        pyion_data.add_entry("c_ratios", "Concentration Ratios", "None",
-                             get_ratios(pyion_data.ci.value, pyion_data.vi.value,
-                                        pyion_data.cs.value, pyion_data.v_add.value))
-
-        self.assertIsNotNone(pyion_data.create_table())
+    # def test_create_table_is_not_none(self):
+    #
+    #     pyion_data = read_file(sys.argv[1])
+    #     pyion_data.add_entry("v_stdev", "Voltage SD", "mV", voltage_stdev(pyion_data.voltage.value))
+    #     pyion_data.add_entry("v_avg", "Voltage Average", "mV", calculateAverage(pyion_data.voltage.value))
+    #     pyion_data.add_entry("c_ratios", "Concentration Ratios", "None",
+    #                          get_ratios(pyion_data.ci.value, pyion_data.vi.value,
+    #                                     pyion_data.cs.value, pyion_data.v_add.value))
+    #
+    #     self.assertIsNotNone(pyion_data.create_table())
