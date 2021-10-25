@@ -25,14 +25,28 @@ if [grep -q "FAILED" output.txt]
 then
   cat output.txt
   rm output.txt
-  exit 3;
+  exit 4;
 fi
 python -m unittest src.unit_tests.cr_unit_tests 2> output.txt
 if [grep -q "FAILED" output.txt]
 then
   cat output.txt
   rm output.txt
-  exit 3;
+  exit 5;
+fi
+python -m unittest src.unit_tests.graph_maker_unit_tests 2> output.txt
+if [grep -q "FAILED" output.txt]
+then
+  cat output.txt
+  rm output.txt
+  exit 6;
+fi
+python -m unittest src.unit_tests.PyionData_unit_tests 2> output.txt
+if [grep -q "FAILED" output.txt]
+then
+  cat output.txt
+  rm output.txt
+  exit 7;
 fi
 rm output.txt
 exit 0
