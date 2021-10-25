@@ -6,8 +6,8 @@ from cr import *
 from excel_writer import *
 
 # global variable
-printIndicator = 0;  # if -c is set, this will be set to 1
-writeIndicator = 0;  # if -f is set, this will be set to 1
+printIndicator = 0  # if -c is set, this will be set to 1
+writeIndicator = 0  # if -f is set, this will be set to 1
 
 
 def runner():
@@ -67,11 +67,9 @@ def validate_cmd_line() -> None:
     # for loop through the list to check if -c or -f are set, and change the indicators to 1
     for item in sys.argv:
         if item == "-c":
-            print("-c is entered, the table will be printed to the console\n")
             printIndicator = 1
 
         if item == "-f":
-            print("-f is entered, the output will be written to a file, and the filename should be provided\n")
             writeIndicator = 1
 
 
