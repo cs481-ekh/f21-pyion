@@ -1,28 +1,25 @@
 import sys
+import argparse
 from excel_reader import *
 from voltage_stdev import *
 from src.pyion.averageGeneration import *
 from cr import *
 from excel_writer import *
 
-# global variable
-printIndicator = 0  # if -c is set, this will be set to 1
-writeIndicator = 0  # if -f is set, this will be set to 1
-
 
 def runner():
-    validate_cmd_line()
-    step_one()
-    step_two()
-    step_three()
-    step_four()
+    args = validate_cmd_line()
+    step_one(args)
+    step_two(args)
+    step_three(args)
+    step_four(args)
     pass
 
 
-def step_one():
+def step_one(args: dict):
     print("-> Running Step 1")
     print("    -> Reading Excel File")
-    pyion_data = read_file(sys.argv[1])
+    pyion_data = read_file(args['file_loc'])
     print("    -> Calculating Voltage Average")
     pyion_data.add_entry("v_stdev", "Voltage SD", "mV", voltage_stdev(pyion_data.voltage.value))
     print("    -> Calculating Voltage Standard Deviation")
@@ -32,24 +29,24 @@ def step_one():
                          get_ratios(pyion_data.ci.value, pyion_data.vi.value,
                                     pyion_data.cs.value, pyion_data.v_add.value))
 
-    if printIndicator == 1:
+    if args['c']:
         print(pyion_data.create_table())
-    if writeIndicator == 1:
+    if args['x']:
         write_file(pyion_data, "outputfile")
         print("  -> Wrote to execel file")
 
 
-def step_two():
+def step_two(args: dict):
     print("-> Running Step 2")
     pass
 
 
-def step_three():
+def step_three(args: dict):
     print("-> Running Step 3")
     pass
 
 
-def step_four():
+def step_four(args: dict):
     print("-> Running Step 4")
     pass
 
@@ -58,19 +55,12 @@ def validate_input():
     pass
 
 
-def validate_cmd_line() -> None:
-    if len(sys.argv) > 3:
-        print(
-            "Too many command line arguments given, the correct format is the following: \n [filename] [-f] [-c]")  # the arg0 is the entire directory
-        exit(1)
-
-    # for loop through the list to check if -c or -f are set, and change the indicators to 1
-    for item in sys.argv:
-        if item == "-c":
-            printIndicator = 1
-
-        if item == "-f":
-            writeIndicator = 1
+def validate_cmd_line() -> dict:
+    parser = argparse.ArgumentParser(description="Pyion main.py processing of file names, and flags for output.")
+    parser.add_argument("file_loc", metavar='f', type=str, help="File location of the input .xlsx file,")  # File location Argument
+    parser.add_argument("-c", action='store_true', help="Flag for printing to the console.")  # Print to console flag
+    parser.add_argument("-x", action='store_true', help="Flag for writing to an excel file.")  # Write to Excel flag
+    return vars(parser.parse_args())
 
 
 if __name__ == "__main__":
