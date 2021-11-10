@@ -19,7 +19,9 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="4d2520b7-e739-461c-86f2-257c7eca46cf" name="Default Changelist" comment="added --graph commandlne option and created subclass of PyionUnit" />
+    <list default="true" id="4d2520b7-e739-461c-86f2-257c7eca46cf" name="Default Changelist" comment="unversioned Files">
+      <change beforePath="$PROJECT_DIR$/src/pyion/averageGeneration.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/pyion/averageGeneration.py" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -66,11 +68,11 @@
     </option>
   </component>
   <component name="HighlightingSettingsPerFile">
-    <setting file="file://$PROJECT_DIR$/src/pyion/test.py" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/src/pyion/averageGeneration.py" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/src/pyion/main.py" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/src/pyion/objects/PyionData.py" root0="SKIP_INSPECTION" />
     <setting file="file://$PROJECT_DIR$/src/pyion/objects/PyionUnit.py" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/src/pyion/test.py" root0="FORCE_HIGHLIGHTING" />
   </component>
   <component name="ProjectId" id="1zKO2neLFXGbDl7eDuQcy6aAErv" />
   <component name="ProjectViewState">
@@ -330,7 +332,14 @@
       <option name="project" value="LOCAL" />
       <updated>1636345548218</updated>
     </task>
-    <option name="localTasksCounter" value="12" />
+    <task id="LOCAL-00012" summary="unversioned Files">
+      <created>1636588552321</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1636588552321</updated>
+    </task>
+    <option name="localTasksCounter" value="13" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -369,6 +378,7 @@
     <MESSAGE value="task42 unit test" />
     <MESSAGE value="start task60" />
     <MESSAGE value="added --graph commandlne option and created subclass of PyionUnit" />
-    <option name="LAST_COMMIT_MESSAGE" value="added --graph commandlne option and created subclass of PyionUnit" />
+    <MESSAGE value="unversioned Files" />
+    <option name="LAST_COMMIT_MESSAGE" value="unversioned Files" />
   </component>
 </project>
