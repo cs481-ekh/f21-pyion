@@ -1,0 +1,18 @@
+Index: src/pyion/averageGeneration.py
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>\n\n\ndef calculateAverage(input):\n    #check if the input list has a length that is divisible by 3\n    if len(input)%3 != 0:\n            return None\n\n    sublists = [input[n:n+3] for n in range(0, len(input), 3)]  # sublists contains sublists of length 3, subList is in the format of [[a,b,c],[c,d,e]...]\n    total = 0   #this is the total/sum of a block of three\n\n    averagelist = [] #this is the list that holds all the calculated average\n\n    #head = [\"Average Voltage\"] #this is the header for the table that stores average value\n\n    for item in sublists: # every item is a sublist in the format of [x,y,z]\n        for i in item:  #every i is a number in sublist, like x in [x,y,z]\n                total = total + i   # calculate the total of a sublist like [x,y,z]\n        average = total/3 #for every item/sublist of three elements, calculate the average\n        averagelist.append(average)#store the average of a sublist in a table\n\n    #now make a table from filled-up averagelist and return it\n    #return tabulate(averagelist,headers=head, tablefmt=\"grid\")\n    return averagelist
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/pyion/averageGeneration.py b/src/pyion/averageGeneration.py
+--- a/src/pyion/averageGeneration.py	
++++ b/src/pyion/averageGeneration.py	
+@@ -14,6 +14,7 @@
+     #head = ["Average Voltage"] #this is the header for the table that stores average value
+ 
+     for item in sublists: # every item is a sublist in the format of [x,y,z]
++
+         for i in item:  #every i is a number in sublist, like x in [x,y,z]
+                 total = total + i   # calculate the total of a sublist like [x,y,z]
+         average = total/3 #for every item/sublist of three elements, calculate the average
