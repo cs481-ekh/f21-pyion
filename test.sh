@@ -20,7 +20,7 @@ then
   rm output.txt
   exit 3;
 fi
-python -m unittest src.unit_tests.excel_writer_unit_tests 2> output.txt
+python -m unittest src.unit_tests.pyion_filewriter_unit_tests 2> output.txt
 if [grep -q "FAILED" output.txt]
 then
   cat output.txt
