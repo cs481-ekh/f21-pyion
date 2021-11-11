@@ -1,9 +1,9 @@
 import sys
 import argparse
-from excel_reader import *
 from voltage_stdev import *
 from averageGeneration import *
 from cr import *
+from pyion_filereader import *
 from pyion_filewriter import *
 
 
