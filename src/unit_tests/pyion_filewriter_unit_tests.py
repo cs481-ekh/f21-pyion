@@ -1,10 +1,10 @@
 import unittest
 import src.pyion.excel_reader as rd
-import src.pyion.excel_writer as wr
+import src.pyion.pyion_filewriter as wr
 
-class ExcelWriterTestCase(unittest.TestCase):
+class FileWriterTestCase(unittest.TestCase):
     def __init__(self):
-        super(ExcelWriterTestCase,self).__init__()
+        super(FileWriterTestCase,self).__init__()
         self.test_xl_file = "src/data/KCl-2-26-21-yellow"
 
 
