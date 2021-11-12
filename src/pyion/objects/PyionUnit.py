@@ -7,8 +7,7 @@ class PyionUnit:
     def __str__(self):
         return f"{self.name}({self.unit}): {self.value}"
 
-    def c_to_k(self, temp):
-        return temp + 273.15
+
 
 #Temperature class, which is a subclass of PyionUnit
 
@@ -17,4 +16,5 @@ class Temperature(PyionUnit):
         super().__init__(name, unit, value)
 
     def c_to_k(self, temp):
-        PyionUnit.c_to_k(self, temp)
+        return temp + 273.15
+
