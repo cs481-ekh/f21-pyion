@@ -1,9 +1,9 @@
 import unittest
 from src.pyion.cr import *
 
-class StdevTestCase(unittest.TestCase):
+class CrTestCase(unittest.TestCase):
     def __init__(self):
-        super(StdevTestCase,self).__init()
+        super(CrTestCase,self).__init()
         self.ex_c_init = 50
         self.ex_vol_init = 1000
         self.ex_c_add = 3000
