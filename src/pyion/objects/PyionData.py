@@ -1,5 +1,12 @@
 from src.pyion.objects.PyionUnit import PyionUnit
 from tabulate import tabulate
+from src.pyion.objects.PyionUnit import Temperature
+
+def classChecker(self):
+    if isinstance(self, (PyionUnit, Temperature)) is True:
+        return True
+
+    return False
 
 
 class PyionData:
@@ -18,6 +25,6 @@ class PyionData:
         data_fmt = {}
         for k in self.__dict__.keys():
             v = self.__dict__[k]
-            if type(v) is PyionUnit:
+            if classChecker(v) is True:
                 data_fmt[f"{v.name}({v.unit})"] = v.value if type(v.value) is list else [v.value]
         return tabulate(data_fmt, headers="keys")

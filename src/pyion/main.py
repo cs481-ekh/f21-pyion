@@ -64,6 +64,7 @@ def validate_cmd_line() -> dict:
     parser.add_argument("-c", action='store_true', help="Flag for printing to the console.")  # Print to console flag
     parser.add_argument("-x", action='store_true', help="Flag for writing to an excel file.")  # Write to Excel flag
     parser.add_argument("-csv", action='store_true', help="Flag for writing to an csv file.")  # Write to CSV flag
+    parser.add_argument("--graph", type=str, help="Flag for outputing graph, followed by keywords")
     return vars(parser.parse_args())
 
 
