@@ -5,6 +5,7 @@ from voltage_stdev import *
 from averageGeneration import *
 from cr import *
 from pyion_filewriter import *
+from pr import *
 
 
 def runner():
@@ -28,7 +29,10 @@ def step_one(args: dict):
     pyion_data.add_entry("c_ratios", "Concentration Ratios", "None",
                          get_ratios(pyion_data.ci.value, pyion_data.vi.value,
                                     pyion_data.cs.value, pyion_data.v_add.value))
-
+    print("    -> Calculating Permeability Ratios")
+    pyion_data.add_entry("p_ratios", "Permeability Ratios", "None",
+                         get_pr_list(pyion_data.v_add.value, pyion_data.temp.value,
+                                    pyion_data.c_ratios.value))
     if args['c']:
         print(pyion_data.create_table())
     if args['x']:
