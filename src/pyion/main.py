@@ -1,12 +1,10 @@
 import sys
 import argparse
 from excel_reader import *
-from src.pyion import graph_maker
 from voltage_stdev import *
-from src.pyion.averageGeneration import *
+from averageGeneration import *
 from cr import *
-from excel_writer import *
-from graph_maker import *
+from pyion_filewriter import *
 
 
 def runner():
@@ -34,8 +32,11 @@ def step_one(args: dict):
     if args['c']:
         print(pyion_data.create_table())
     if args['x']:
-        write_file(pyion_data, "outputfile")
+        write_file(pyion_data, "outputfile",export_format="excel")
         print("  -> Wrote to execel file")
+    if args['csv']:
+        write_file(pyion_data, "outputfile",export_format="csv")
+        print("  -> Wrote to csv file")
 
 
 def step_two(args: dict):
@@ -62,7 +63,7 @@ def validate_cmd_line() -> dict:
     parser.add_argument("file_loc", metavar='f', type=str, help="File location of the input .xlsx file,")  # File location Argument
     parser.add_argument("-c", action='store_true', help="Flag for printing to the console.")  # Print to console flag
     parser.add_argument("-x", action='store_true', help="Flag for writing to an excel file.")  # Write to Excel flag
-    parser.add_argument("--graph", type=str, help="Flag for outputting graph, followed by keywords")  # select what kind of graph to output, required=True means if this cmd line field is mandatory or not
+    parser.add_argument("-csv", action='store_true', help="Flag for writing to an csv file.")  # Write to CSV flag
     return vars(parser.parse_args())
 
 
