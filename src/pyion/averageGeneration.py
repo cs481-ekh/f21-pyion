@@ -1,6 +1,3 @@
-
-
-
 def calculateAverage(input):
     #check if the input list has a length that is divisible by 3
     if len(input)%3 != 0:
