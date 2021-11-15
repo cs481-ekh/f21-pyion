@@ -10,65 +10,43 @@ from src.pyion.pr import *
 
 def runner():
     args = validate_cmd_line()
-    step_one(args)
-    step_two(args)
-    step_three(args)
-    step_four(args)
-    pass
-
-
-def step_one(args: dict):
     print("-> Running Step 1")
     print("    -> Reading Excel File")
     pyion_data = read_file(args['file_loc'])
+    print("-> Running Step 2")
     print("    -> Calculating Voltage Average")
     pyion_data.add_entry("v_stdev", "Voltage SD", "mV", voltage_stdev(pyion_data.voltage.value))
     print("    -> Calculating Voltage Standard Deviation")
     pyion_data.add_entry("v_avg", "Voltage Average", "mV", calculateAverage(pyion_data.voltage.value))
+    print("-> Running Step 3")
     print("    -> Calculating Concentration Ratios")
     pyion_data.add_entry("c_ratios", "Concentration Ratios", "None",
                          get_ratios(pyion_data.ci.value, pyion_data.vi.value,
                                     pyion_data.cs.value, pyion_data.v_add.value))
+    print("-> Running Step 4")
     print("    -> Calculating Permeability Ratios")
     pyion_data.add_entry("p_ratios", "Permeability Ratios", "None",
                          get_pr_list(pyion_data.v_add.value, pyion_data.temp.value,
-                                    pyion_data.c_ratios.value))
+                                     pyion_data.c_ratios.value))
+
+    print("-> Executing command line argument requests.")
     if args['c']:
         if len(args['c']) != pyion_data.entryCount:
             raise Exception(f"--c argument doesn't match the number of Pyion Unit entries, looking "
                             f"for {pyion_data.entryCount} number of flags in the --c argument. (eg. {pyion_data.entryCount * '1'})")
-        print(pyion_data.create_table(args['c']))
+        print(f"Console Table: \n{pyion_data.create_table(args['c'])}")
     if args['x']:
         if len(args['x']) != pyion_data.entryCount:
             raise Exception(f"--x argument doesn't match the number of Pyion Unit entries, looking "
                             f"for {pyion_data.entryCount} number of flags in the --x argument. (eg. {pyion_data.entryCount * '1'})")
         write_file(pyion_data, "outputfile", args['x'], export_format="excel")
-        print("  -> Wrote to execel file")
+        print("  -> Wrote to Excel file.")
     if args['csv']:
         if len(args['csv']) != pyion_data.entryCount:
             raise Exception(f"--csv argument doesn't match the number of Pyion Unit entries, looking "
                             f"for {pyion_data.entryCount} number of flags in the --csv argument. (eg. {pyion_data.entryCount * '1'})")
         write_file(pyion_data, "outputfile", args['csv'], export_format="csv")
-        print("  -> Wrote to csv file")
-
-
-def step_two(args: dict):
-    print("-> Running Step 2")
-    pass
-
-
-def step_three(args: dict):
-    print("-> Running Step 3")
-    pass
-
-
-def step_four(args: dict):
-    print("-> Running Step 4")
-    pass
-
-
-def validate_input():
-    pass
+        print("  -> Wrote to csv file.")
 
 
 def validate_cmd_line() -> dict:
