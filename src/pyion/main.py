@@ -1,6 +1,6 @@
 import sys
 import argparse
-from src.pyion.excel_reader import *
+from src.pyion.pyion_filereader import *
 from src.pyion.voltage_stdev import *
 from src.pyion.averageGeneration import *
 from src.pyion.cr import *
