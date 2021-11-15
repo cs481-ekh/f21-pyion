@@ -2,7 +2,7 @@ from excel_reader import read_file as read_excel
 import csv
 import sys
 
-from objects.PyionData import PyionData
+from src.pyion.objects.PyionData import PyionData
 
 def read_file(file_loc):
     data = None
