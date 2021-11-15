@@ -17,3 +17,15 @@ def graph_single(data_source: PyionUnit) -> None:
     plt.xticks(t)
     plt.ylabel(f"{data_source.name}({data_source.unit})")
     plt.show()
+
+def graph_cr_vs_v(cr_data: PyionUnit, v_avg_data: PyionUnit):
+    if v_avg_data is None or cr_data is None:
+        raise Exception("Data source cannot be null.")
+
+    x = cr_data.value
+    y = v_avg_data.value
+    plt.plot(x, y, 'bo-')
+    plt.title(f"Concentration Ratio vs Average Voltage")
+    plt.ylabel(f"{v_avg_data.name}({v_avg_data.unit})")
+    plt.xlabel("Concentration Ratio")
+    plt.savefig("./cr_to_v.png")
