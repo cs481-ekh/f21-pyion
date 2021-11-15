@@ -6,6 +6,7 @@ from src.pyion.averageGeneration import *
 from src.pyion.cr import *
 from src.pyion.pyion_filewriter import *
 from src.pyion.pr import *
+from src.pyion.graph_maker import *
 
 
 def runner():
@@ -28,6 +29,8 @@ def runner():
     pyion_data.add_entry("p_ratios", "Permeability Ratios", "None",
                          get_pr_list(pyion_data.v_add.value, pyion_data.temp.value,
                                      pyion_data.c_ratios.value))
+    print("    -> Saving graph of Concentration Ratio vs Average Voltage to ./cr_to_v.png")
+    graph_cr_vs_v(pyion_data.c_ratios, pyion_data.v_avg)
 
     print("-> Executing command line argument requests.")
     if args['c']:
