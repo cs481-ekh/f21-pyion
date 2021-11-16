@@ -1,4 +1,4 @@
-from excel_reader import read_file as read_excel
+from src.pyion.excel_reader import read_file as read_excel
 import csv
 import sys
 
