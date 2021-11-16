@@ -30,7 +30,7 @@ def check_headers(sheet) -> None:
 
 
 # Returns all of a column recursively after row 1
-def get_column(sheet, col:  str, cell_int: int) -> list[float]:
+def get_column(sheet, col:  str, cell_int: int):
     if sheet is None or cell_int is None or col is None:
         raise Exception("Null parameter given in get_column method")
 
