@@ -1,15 +1,17 @@
-import sys
 import argparse
-from src.pyion.pyion_filereader import *
-from src.pyion.voltage_stdev import *
-from src.pyion.averageGeneration import *
-from src.pyion.cr import *
-from src.pyion.pyion_filewriter import *
-from src.pyion.pr import *
-from src.pyion.graph_maker import *
+from src.pyion.pyion_filereader import read_file
+from src.pyion.voltage_stdev import voltage_stdev
+from src.pyion.averageGeneration import calculateAverage
+from src.pyion.cr import get_ratios
+from src.pyion.pyion_filewriter import write_file
+from src.pyion.pr import get_pr_list
+from src.pyion.graph_maker import graph_cr_vs_v
 
 
 def runner():
+    """Reads an input file and performs tasks according to arguments"""
+    #pylint: disable=line-to-long
+    #pylint: disable=undefined-variable
     args = validate_cmd_line()
     print("-> Running Step 1")
     print("    -> Reading Excel File")
