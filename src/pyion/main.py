@@ -1,15 +1,19 @@
-import sys
+"""This module assists in calculations and graphs for Dr.Fologea"""
 import argparse
-from src.pyion.pyion_filereader import *
-from src.pyion.voltage_stdev import *
-from src.pyion.averageGeneration import *
-from src.pyion.cr import *
-from src.pyion.pyion_filewriter import *
-from src.pyion.pr import *
-from src.pyion.graph_maker import *
+from src.pyion.pyion_filereader import read_file
+from src.pyion.voltage_stdev import voltage_stdev
+from src.pyion.averageGeneration import calculateAverage
+from src.pyion.cr import get_ratios
+from src.pyion.pyion_filewriter import write_file
+from src.pyion.pr import get_pr_list
+from src.pyion.graph_maker import graph_cr_vs_v
 
 
 def runner():
+    """Reads an input file and performs tasks according to arguments"""
+    #pylint: disable=line-too-long
+    #pylint: disable=undefined-variable
+    #pylint: disable=no-member
     args = validate_cmd_line()
     print("-> Running Step 1")
     print("    -> Reading Excel File")
@@ -54,6 +58,8 @@ def runner():
 
 
 def validate_cmd_line() -> dict:
+    """Validates command line arguments"""
+    #pylint: disable=line-too-long
     parser = argparse.ArgumentParser(description="Pyion main.py processing of file names, and flags for output.")
     parser.add_argument("file_loc", metavar='f', type=str, help="File location of the input .xlsx file,")  # File location Argument
     parser.add_argument("--c", required=False, type=str, help="Flag for printing to the console.")  # Print to console flag
