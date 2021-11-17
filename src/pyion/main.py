@@ -58,6 +58,7 @@ def runner():
 
 def validate_cmd_line() -> dict:
     """Validates command line arguments"""
+    #pylint: disable=line-too-long
     parser = argparse.ArgumentParser(description="Pyion main.py processing of file names, and flags for output.")
     parser.add_argument("file_loc", metavar='f', type=str, help="File location of the input .xlsx file,")  # File location Argument
     parser.add_argument("--c", required=False, type=str, help="Flag for printing to the console.")  # Print to console flag
