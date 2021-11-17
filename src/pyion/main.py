@@ -13,6 +13,7 @@ def runner():
     """Reads an input file and performs tasks according to arguments"""
     #pylint: disable=line-too-long
     #pylint: disable=undefined-variable
+    #pylint: disable=no-member
     args = validate_cmd_line()
     print("-> Running Step 1")
     print("    -> Reading Excel File")
