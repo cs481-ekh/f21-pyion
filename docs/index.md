@@ -12,5 +12,5 @@ Since these calculations and plots can now be done automatically by our program,
 ### The Project
 Our project (Pyion), is a command line interface program that allows our sponser, Dr. Fologea to plug in data from his research to perform calculations and ultimately 
 check to make sure that the data that his lab has produced is valid. To know that the data is valid, the end-goal calculations of this project should produce a graph similar to the one below.
-[!cr_graph](https://i.imgur.com/j8rN4ZM.png)
+![cr_graph](https://i.imgur.com/j8rN4ZM.png)
 ### How it Works
