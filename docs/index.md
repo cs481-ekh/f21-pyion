@@ -52,15 +52,3 @@ Using the same method as the console printing, a user can either save the output
 
 python -m src.pyion.main .\src\data\KCl-2-26-21-yellow.xlsx --x 1111111111
 ![excel.png](https://i.imgur.com/Wo0ezrI.png)
-
-
-
-python -m src.pyion.main .\src\data\KCl-2-26-21-yellow.xlsx --c 1111111111
-![console.png](https://i.imgur.com/1o7Oi5d.png)
-
-
-Using the same method as the console printing, a user can either save the output to an Excel or CSV file. An example of this can be seen below:
-
-
-python -m src.pyion.main .\src\data\KCl-2-26-21-yellow.xlsx --x 1111111111
-![excel.png](https://i.imgur.com/Wo0ezrI.png)
