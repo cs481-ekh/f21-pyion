@@ -9,3 +9,5 @@ From the experimental data provided in a table, we have been able to calculate a
 Since these calculations and plots can now be done automatically by our program, Dr.Fologea and his team will not have to spend time manually solving equations and plotting points. Our program allows more flexibility in the format of input and output since it can read and write to both excel, and csv file formats. Our program saves time and allows for customization of output tables.
 
 ## Description
+### The Project
+### How it Works
