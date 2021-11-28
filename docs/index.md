@@ -10,7 +10,57 @@ Since these calculations and plots can now be done automatically by our program,
 
 ## Description
 ### The Project
-Our project (Pyion), is a command line interface program that allows our sponser, Dr. Fologea to plug in data from his research to perform calculations and ultimately 
+Our project (Pyion), is a command line interface program that allows our sponsor, Dr. Fologea to plug in data from his research to perform calculations and ultimately 
 check to make sure that the data that his lab has produced is valid. To know that the data is valid, the end-goal calculations of this project should produce a graph similar to the one below.
+
+
 ![cr_graph](https://i.imgur.com/j8rN4ZM.png)
+
+
 ### How it Works
+This program works by running in the command line space and uses the following command line arguments:
+```
+usage: main.py [-h] [--c C] [--x X] [--csv CSV] [--graph GRAPH] f
+
+Pyion main.py processing of file names, and flags for output.
+
+positional arguments:
+  f              File location of the input .xlsx file,
+
+optional arguments:
+  -h, --help     show this help message and exit
+  --c C          Flag for printing to the console.
+  --x X          Flag for writing to an excel file.
+  --csv CSV      Flag for writing to an csv file.
+ ```
+To run the basic program, the user just needs to supply a file name. The base program with no command line arguments will save a graph which validates or invalids the data. An example of this picture can be seen above. To run this configuration, an example is below: 
+ 
+ 
+python -m src.pyion.main .\src\data\KCl-2-26-21-yellow.xlsx
+![basic.png](https://i.imgur.com/svzuvT2.png)
+
+
+If the user wants to also see the data displayed in the console, they can add the --c argument flag. Following the flag, they need to supply 10 one's or zero's in order to signify which columns they want to display. An example of this can be seen below:
+
+
+python -m src.pyion.main .\src\data\KCl-2-26-21-yellow.xlsx --c 1111111111
+![console.png](https://i.imgur.com/1o7Oi5d.png)
+
+
+Using the same method as the console printing, a user can either save the output to an Excel or CSV file. An example of this can be seen below:
+
+
+python -m src.pyion.main .\src\data\KCl-2-26-21-yellow.xlsx --x 1111111111
+![excel.png](https://i.imgur.com/Wo0ezrI.png)
+
+
+
+python -m src.pyion.main .\src\data\KCl-2-26-21-yellow.xlsx --c 1111111111
+![console.png](https://i.imgur.com/1o7Oi5d.png)
+
+
+Using the same method as the console printing, a user can either save the output to an Excel or CSV file. An example of this can be seen below:
+
+
+python -m src.pyion.main .\src\data\KCl-2-26-21-yellow.xlsx --x 1111111111
+![excel.png](https://i.imgur.com/Wo0ezrI.png)
